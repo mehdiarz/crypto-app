@@ -2,14 +2,16 @@ import TableRow from "./TableRow.jsx";
 
 import { FadeLoader } from "react-spinners";
 
+import styles from "./TableCoin.module.css";
+
 const TableCoin = ({ coins, isLoading }) => {
   console.log(coins);
   return (
-    <div>
+    <div className={styles.container}>
       {isLoading ? (
         <FadeLoader color="#3874ff" />
       ) : (
-        <table>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>Coin</th>
