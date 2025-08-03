@@ -4,7 +4,7 @@ import { FadeLoader } from "react-spinners";
 
 import styles from "./TableCoin.module.css";
 
-const TableCoin = ({ coins, isLoading }) => {
+const TableCoin = ({ coins, isLoading, currency }) => {
   console.log(coins);
   return (
     <div className={styles.container}>
@@ -24,7 +24,7 @@ const TableCoin = ({ coins, isLoading }) => {
           </thead>
           <tbody>
             {coins.map((coin) => (
-              <TableRow coin={coin} key={coin.id} />
+              <TableRow coin={coin} key={coin.id} currency={currency} />
             ))}
           </tbody>
         </table>

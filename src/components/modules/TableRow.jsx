@@ -12,7 +12,19 @@ const TableRow = ({
     current_price,
     symbol,
   },
+  currency,
 }) => {
+
+  const getCurrencySymbol = () => {
+    if (currency === "usd") {
+      return "$";
+    } else if (currency === "eur") {
+      return "€";
+    } else {
+      return "¥"; // Yen symbol
+    }
+  };
+
   return (
     <>
       <tr>
@@ -21,7 +33,10 @@ const TableRow = ({
           <span>{symbol.toUpperCase()}</span>
         </td>
         <td>{name}</td>
-        <td>${current_price.toLocaleString()}</td>
+        <td>
+          {getCurrencySymbol()}
+          {current_price.toLocaleString()}
+        </td>
         <td className={price_change > 0 ? styles.success : styles.error}>
           {price_change.toFixed(2)}%
         </td>
