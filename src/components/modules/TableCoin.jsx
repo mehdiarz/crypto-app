@@ -9,7 +9,7 @@ const TableCoin = ({ coins, isLoading }) => {
   return (
     <div className={styles.container}>
       {isLoading ? (
-        <FadeLoader color="#3874ff" />
+        <FadeLoader color="#3874ff" className={styles.loader}/>
       ) : (
         <table className={styles.table}>
           <thead>
