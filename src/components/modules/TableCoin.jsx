@@ -5,7 +5,6 @@ import { FadeLoader } from "react-spinners";
 import styles from "./TableCoin.module.css";
 
 const TableCoin = ({ coins, isLoading, currency }) => {
-  console.log(coins);
   return (
     <div className={styles.container}>
       {isLoading ? (

@@ -14,4 +14,18 @@ const getCoinList = (page, currency) => {
   );
 };
 
-export { getCoinList };
+const searchCoin = ( query , controller ) => {
+    return fetch(
+        `${BASE_URL}/search?query=${query}`,
+        {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+                "x-cg-demo-api-key": API_KEY,
+            },
+          signal: controller.signal
+        },
+    );
+};
+
+export { getCoinList, searchCoin };
