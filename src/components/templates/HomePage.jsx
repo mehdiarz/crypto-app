@@ -3,6 +3,7 @@ import TableCoin from "../modules/TableCoin.jsx";
 import { getCoinList } from "../../services/CryptoApi.js";
 import Pagination from "../modules/Pagination.jsx";
 import Search from "../modules/Search.jsx";
+import Chart from "../modules/Chart.jsx";
 
 const HomePage = () => {
   const [coins, setCoins] = useState([]);
@@ -10,6 +11,7 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
   const [currency, setCurrency] = useState("usd");
+  const [chart, setChart] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,9 +43,10 @@ const HomePage = () => {
       {error ? (
         <div className="text-red-500">Error: {error}</div>
       ) : (
-        <TableCoin coins={coins} isLoading={loading} currency={currency} />
+        <TableCoin coins={coins} isLoading={loading} currency={currency} setChart={setChart} />
       )}
       <Pagination page={page} setPage={setPage} />
+      {!!chart && <Chart chart={chart} setChart={setChart} />}
     </div>
   );
 };

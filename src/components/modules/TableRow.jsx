@@ -2,18 +2,36 @@ import chartup from "../../assests/chart-up.svg";
 import chartdown from "../../assests/chart-down.svg";
 
 import styles from "./TableRow.module.css";
+import { marketChart } from "../../services/CryptoApi.js";
 
 const TableRow = ({
-  coin: {
+  coin,
+  currency,
+  setChart,
+}) => {
+  const {
+    id,
     image,
     name,
     price_change_percentage_24h: price_change,
     total_volume,
     current_price,
     symbol,
-  },
-  currency,
-}) => {
+  } = coin;
+  const showHandler = () => {
+    const fetchData = async () => {
+      try {
+        const response = await marketChart(id);
+
+        const data = await response.json();
+        setChart({ ...data, coin});
+      } catch (err) {
+        setChart(null);
+          console.error("Error fetching coin data:", err);
+      }
+    };
+    fetchData();
+  }
 
   const getCurrencySymbol = () => {
     if (currency === "usd") {
@@ -28,9 +46,11 @@ const TableRow = ({
   return (
     <>
       <tr>
-        <td className={styles.symbol}>
-          <img src={image} alt={name} />
-          <span>{symbol.toUpperCase()}</span>
+        <td>
+          <div className={styles.symbol} onClick={showHandler}>
+            <img src={image} alt={name} />
+            <span>{symbol.toUpperCase()}</span>
+          </div>
         </td>
         <td>{name}</td>
         <td>

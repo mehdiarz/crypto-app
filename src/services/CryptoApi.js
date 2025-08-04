@@ -28,4 +28,17 @@ const searchCoin = ( query , controller ) => {
     );
 };
 
-export { getCoinList, searchCoin };
+const marketChart = ( coin ) => {
+  return fetch(
+    `${BASE_URL}/coins/${coin}/market_chart?vs_currency=usd&days=7`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        "x-cg-demo-api-key": API_KEY,
+      },
+    },
+  );
+};
+
+export { getCoinList, searchCoin, marketChart };
